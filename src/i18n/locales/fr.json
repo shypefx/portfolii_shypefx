@@ -1,0 +1,51 @@
+{
+    "nav": {
+      "home": "Accueil",
+      "about": "À Propos",
+      "portfolio": "Portfolio",
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "hero": {
+      "title": "Développeur Full Stack",
+      "subtitle": "Je crée des expériences web modernes et performantes",
+      "cta": "Découvrir mes projets",
+      "contact": "Me contacter"
+    },
+    "about": {
+      "title": "À Propos de Shypefx",
+      "description": "Développeur Full Stack passionné avec une expertise dans les technologies modernes. Je transforme vos idées en solutions web innovantes et performantes.",
+      "skills": "Compétences"
+    },
+    "services": {
+      "title": "Mes Services",
+      "website": {
+        "title": "Site Web",
+        "description": "Développement de site web responsive et moderne",
+        "price": "À partir de 800€"
+      },
+      "design": {
+        "title": "Site Web + Design",
+        "description": "Conception UI/UX complète + développement",
+        "price": "À partir de 1200€"
+      },
+      "hosting": {
+        "title": "Site Web + Hébergement",
+        "description": "Développement + hébergement et maintenance",
+        "price": "À partir de 900€"
+      }
+    },
+    "portfolio": {
+      "title": "Mes Réalisations",
+      "viewProject": "Voir le projet"
+    },
+    "contact": {
+      "title": "Contactez-moi",
+      "subtitle": "Prêt à démarrer votre projet ?",
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "send": "Envoyer"
+    }
+  }
+  

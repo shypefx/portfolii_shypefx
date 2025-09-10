@@ -1,0 +1,51 @@
+{
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "portfolio": "Portfolio",
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "hero": {
+      "title": "Full Stack Developer",
+      "subtitle": "I create modern and performant web experiences",
+      "cta": "View my projects",
+      "contact": "Contact me"
+    },
+    "about": {
+      "title": "About Shypefx",
+      "description": "Passionate Full Stack Developer with expertise in modern technologies. I transform your ideas into innovative and performant web solutions.",
+      "skills": "Skills"
+    },
+    "services": {
+      "title": "My Services",
+      "website": {
+        "title": "Website",
+        "description": "Responsive and modern website development",
+        "price": "From €800"
+      },
+      "design": {
+        "title": "Website + Design",
+        "description": "Complete UI/UX design + development",
+        "price": "From €1200"
+      },
+      "hosting": {
+        "title": "Website + Hosting",
+        "description": "Development + hosting and maintenance",
+        "price": "From €900"
+      }
+    },
+    "portfolio": {
+      "title": "My Work",
+      "viewProject": "View project"
+    },
+    "contact": {
+      "title": "Contact Me",
+      "subtitle": "Ready to start your project?",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send"
+    }
+  }
+  
