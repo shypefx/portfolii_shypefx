@@ -58,13 +58,13 @@ const Contact: React.FC = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      value: 'contact@shypefx.com',
-      link: 'mailto:contact@shypefx.com'
+      value: 'shypefx.pro@proton.me',
+      link: 'mailto:shypefx.pro@proton.me'
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: 'Téléphone',
-      value: '+33 1 23 45 67 89',
+      value: '+33 6 46 04 56 83',
       link: 'tel:+33123456789'
     },
     {

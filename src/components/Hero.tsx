@@ -4,7 +4,11 @@ import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const Hero: React.FC = () => {
-  const { t } = useTranslation();
+const { t, i18n } = useTranslation();
+
+console.log('Current language:', i18n.language);
+console.log('CTA translation:', t('hero.cta', 'DEFAULT CTA'));
+console.log('Contact translation:', t('hero.contact', 'DEFAULT CONTACT'));
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 pt-20">

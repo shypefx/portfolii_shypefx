@@ -1,128 +1,57 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, Github, Eye, Code, Palette, Server } from 'lucide-react';
+import { ExternalLink, Github, Eye, Code, Palette, Server, Globe } from 'lucide-react';
+import { projects } from '../utils/data'; // Import your projects data
 
+// Update the Project interface to match your data structure
 interface Project {
-  id: number;
+  id: string;
   title: string;
   description: string;
   image: string;
   technologies: string[];
-  category: 'web' | 'ecommerce' | 'mobile' | 'design';
-  liveUrl?: string;
-  githubUrl?: string;
-  featured: boolean;
+  link?: string;
+  github?: string;
+  fullDescription: string;
+  features: string[];
+  challenges: string;
 }
 
 const Portfolio: React.FC = () => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'Plateforme e-commerce complète avec paiement Stripe, gestion des stocks et dashboard admin',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&crop=center',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux'],
-      category: 'ecommerce',
-      liveUrl: 'https://demo-ecommerce.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/ecommerce-platform',
-      featured: true
-    },
-    {
-      id: 2,
-      title: 'Restaurant Le Gourmet',
-      description: 'Site vitrine moderne pour restaurant avec système de réservation en ligne et menu interactif',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=500&fit=crop&crop=center',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma'],
-      category: 'web',
-      liveUrl: 'https://restaurant-demo.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/restaurant-website',
-      featured: true
-    },
-    {
-      id: 3,
-      title: 'Task Manager Pro',
-      description: 'Application de gestion de tâches collaborative avec notifications temps réel',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop&crop=center',
-      technologies: ['Vue.js', 'Express', 'PostgreSQL', 'Socket.io'],
-      category: 'web',
-      liveUrl: 'https://taskmanager.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/task-manager',
-      featured: false
-    },
-    {
-      id: 4,
-      title: 'Portfolio Artiste',
-      description: 'Portfolio interactif pour artiste avec galerie immersive et animations 3D',
-      image: 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800&h=500&fit=crop&crop=center',
-      technologies: ['React', 'Three.js', 'Framer Motion', 'Firebase'],
-      category: 'design',
-      liveUrl: 'https://artist-portfolio.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/artist-portfolio',
-      featured: true
-    },
-    {
-      id: 5,
-      title: 'Fitness Tracker',
-      description: 'Application mobile de suivi fitness avec dashboard analytics et synchronisation wearables',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop&crop=center',
-      technologies: ['React Native', 'Node.js', 'Chart.js', 'AWS'],
-      category: 'mobile',
-      liveUrl: 'https://fitness-app.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/fitness-tracker',
-      featured: false
-    },
-    {
-      id: 6,
-      title: 'Marketplace Immobilier',
-      description: 'Plateforme immobilière avec recherche géolocalisée, visites virtuelles et système de leads',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=500&fit=crop&crop=center',
-      technologies: ['Vue.js', 'NestJS', 'PostgreSQL', 'MapBox'],
-      category: 'ecommerce',
-      liveUrl: 'https://realestate.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/real-estate',
-      featured: false
-    },
-    {
-      id: 7,
-      title: 'Banking Dashboard',
-      description: 'Interface de gestion bancaire avec analytics avancés et sécurité renforcée',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&crop=center',
-      technologies: ['React', 'TypeScript', 'D3.js', 'Node.js'],
-      category: 'web',
-      liveUrl: 'https://banking-demo.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/banking-dashboard',
-      featured: true
-    },
-    {
-      id: 8,
-      title: 'Fashion Store',
-      description: 'Boutique en ligne de mode avec configurateur 3D et réalité augmentée',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=500&fit=crop&crop=center',
-      technologies: ['Next.js', 'Shopify', 'AR.js', 'Stripe'],
-      category: 'ecommerce',
-      liveUrl: 'https://fashion-store.shypefx.com',
-      githubUrl: 'https://github.com/shypefx/fashion-store',
-      featured: false
-    }
-  ];
+  // Create categories based on your projects (you can adjust these)
+  const getProjectCategory = (project: Project): string => {
+    const title = project.title.toLowerCase();
+    const techs = project.technologies.join(' ').toLowerCase();
+    
+    if (title.includes('web') || title.includes('website') || techs.includes('web')) return 'web';
+    if (title.includes('iptv') || title.includes('player')) return 'media';
+    if (title.includes('api') || title.includes('live') || title.includes('rtp')) return 'api';
+    if (title.includes('art') || title.includes('gallery')) return 'culture';
+    if (title.includes('upscale') || title.includes('detection')) return 'ai';
+    return 'web'; // Default category
+  };
 
+  // Enhanced filters based on your projects
   const filters = [
-    { key: 'all', label: 'Tous', icon: Code },
-    { key: 'web', label: 'Web Apps', icon: Code },
-    { key: 'ecommerce', label: 'E-Commerce', icon: Server },
-    { key: 'mobile', label: 'Mobile', icon: Server },
-    { key: 'design', label: 'Design', icon: Palette }
+    { key: 'all', label: 'Tous les projets', icon: Code },
+    { key: 'web', label: 'Sites Web', icon: Globe },
+    { key: 'api', label: 'API & Live Data', icon: Server },
+    { key: 'media', label: 'Média & Streaming', icon: Eye },
+    { key: 'ai', label: 'IA & Computer Vision', icon: Palette },
+    { key: 'culture', label: 'Culture & Art', icon: Palette }
   ];
 
+  // Filter projects based on active filter
   const filteredProjects = activeFilter === 'all' 
     ? projects 
-    : projects.filter(project => project.category === activeFilter);
+    : projects.filter(project => getProjectCategory(project) === activeFilter);
 
-  const featuredProjects = projects.filter(project => project.featured);
+  // Featured projects (first 4 projects)
+  const featuredProjects = projects.slice(0, 4);
 
   return (
     <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -155,7 +84,7 @@ const Portfolio: React.FC = () => {
             {t('portfolio.featured', 'Projets Phares')}
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
-            {featuredProjects.slice(0, 4).map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -169,30 +98,42 @@ const Portfolio: React.FC = () => {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      // Fallback for broken images
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800&h=500&fit=crop';
+                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
-                      {project.liveUrl && (
+                      {project.link && (
                         <a
-                          href={project.liveUrl}
+                          href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-3 bg-white rounded-full text-gray-900 hover:bg-gray-100 transition-colors"
+                          title="Voir le site"
                         >
                           <ExternalLink size={20} />
                         </a>
                       )}
-                      {project.githubUrl && (
+                      {project.github && (
                         <a
-                          href={project.githubUrl}
+                          href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-3 bg-white rounded-full text-gray-900 hover:bg-gray-100 transition-colors"
+                          title="Code source"
                         >
                           <Github size={20} />
                         </a>
                       )}
                     </div>
+                  </div>
+                  {/* Featured Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                      ⭐ Phare
+                    </span>
                   </div>
                 </div>
                 <div className="p-6">
@@ -267,19 +208,15 @@ const Portfolio: React.FC = () => {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&h=500&fit=crop';
+                  }}
                 />
-                {project.featured && (
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
-                      ⭐ Phare
-                    </span>
-                  </div>
-                )}
                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="flex space-x-3">
-                    {project.liveUrl && (
+                    {project.link && (
                       <a
-                        href={project.liveUrl}
+                        href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 bg-white rounded-full text-gray-900 hover:bg-gray-100 transition-colors"
@@ -288,9 +225,9 @@ const Portfolio: React.FC = () => {
                         <Eye size={16} />
                       </a>
                     )}
-                    {project.githubUrl && (
+                    {project.github && (
                       <a
-                        href={project.githubUrl}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 bg-white rounded-full text-gray-900 hover:bg-gray-100 transition-colors"

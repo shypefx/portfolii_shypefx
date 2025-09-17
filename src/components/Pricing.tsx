@@ -22,17 +22,16 @@ const Pricing: React.FC = () => {
     {
       id: 'website',
       name: 'Site Web Vitrine',
-      price: '€800',
+      price: '€600',
       period: 'À partir de',
       description: 'Site vitrine professionnel pour présenter votre activité',
       features: [
         'Design responsive moderne',
-        'Jusqu\'à 5 pages',
+        'Jusqu\'à 6 pages',
         'Optimisation SEO de base',
         'Formulaire de contact',
         'Intégration réseaux sociaux',
         'Version mobile optimisée',
-        '1 mois de support gratuit'
       ],
       icon: <Zap className="w-8 h-8" />,
     },
@@ -49,8 +48,6 @@ const Pricing: React.FC = () => {
         'Charte graphique complète',
         'Animations et interactions',
         'Optimisation avancée',
-        'Formation à la gestion',
-        '2 mois de support gratuit'
       ],
       popular: true,
       icon: <Star className="w-8 h-8" />,
@@ -58,7 +55,7 @@ const Pricing: React.FC = () => {
     {
       id: 'website-hosting',
       name: 'Site Web + Hébergement',
-      price: '€950',
+      price: '€800',
       period: 'À partir de',
       description: 'Site web avec hébergement et maintenance inclus',
       features: [
@@ -205,10 +202,10 @@ const Pricing: React.FC = () => {
           </h3>
           <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
-              { name: 'E-Commerce', price: '+€500' },
               { name: 'Blog/CMS', price: '+€300' },
+              { name: 'Google Research', price: '+€500' },
               { name: 'Multilingue', price: '+€200' },
-              { name: 'Formation', price: '+€150' }
+              { name: 'Formation', price: '+€100' }
             ].map((service, index) => (
               <div key={index} className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md">
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
